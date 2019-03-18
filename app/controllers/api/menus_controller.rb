@@ -15,8 +15,11 @@ class Api::MenusController < ApplicationController
   end
 
   def update
-    @menu.update(menu_params)
-    render json: @menu
+    if @menu.update(menu_params)
+      render json: @menu
+    else
+      render json: { errors: @menu.errors }, status: :unprocessable_entity
+    end
   end
 
   def destroy
