@@ -16,7 +16,8 @@ class Api::ItemsController < ApplicationController
   end
 
   def update
-    if @item.save(item_params)
+    binding.pry
+    if @item.update(item_params)
       render json: @item
     else
       render json: { errors: @item.errors }, status: :unprocessable_entity
